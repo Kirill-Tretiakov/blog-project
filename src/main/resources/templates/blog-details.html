@@ -9,14 +9,16 @@
 <body>
 <div th:insert="blocks/header.html"></div>
 <div class="container mt-5 mb-2">
-    <h1>Блог сайта</h1>
-    <div th:each="post : ${posts}" class="alert alert-info mt-5">
-        <h3 th:text="${post.title}"/>
-        <p th:text="${post.anons}"/>
-        <a th:href="'/blog/' + ${post.id}" class="btn btn-warning">Детальнее</a>
+    <div th:each="el : ${post}" class="alert alert-info mt-5">
+        <h3 th:text="${el.title}"/>
+        <p th:text="${el.full_text}"/>
+        <p><b>Просмотры: </b><span th:text="${el.views}"/></p>
+        <a th:href="'/blog/' + ${el.id} +'/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href="'/blog/' + ${el.id} +'/remove'" class="btn btn-warning">Удалить</a>
     </div>
 </div>
 <div th:insert="blocks/footer.html"></div>
+a
 </body>
 </html>
 

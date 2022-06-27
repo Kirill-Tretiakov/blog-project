@@ -42,4 +42,7 @@ public class PostService implements IPostService {
     public Post updatePost(long id, Post post) {
         return postRepository.save(post);
     }
+
+    public void findById(long id) {
+    }
 }
