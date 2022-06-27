@@ -8,8 +8,13 @@
 </head>
 <body>
 <div th:insert="blocks/header.html"></div>
-<div class="container mt-5">
-    <h1>Blog site</h1>
+<div class="container mt-5 mb-2">
+    <h1>Блог сайта</h1>
+    <div th:each="post : ${posts}" class="alert alert-info mt-5">
+        <h3 th:text="${post.title}"/>
+        <p th:text="${post.anons}"/>
+        <a th:href="'/blog/' + ${post.id}">Детальнее</a>
+    </div>
 </div>
 <div th:insert="blocks/footer.html"></div>
 </body>
