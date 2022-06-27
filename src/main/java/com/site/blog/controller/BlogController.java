@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BlogController {
     private final PostService postService;
+    private final PostRepository postRepository;
+
 
     @Autowired
-    public BlogController(PostService postService) {
+    public BlogController(PostService postService, PostRepository postRepository) {
         this.postService = postService;
+        this.postRepository = postRepository;
     }
 
 
@@ -45,10 +47,33 @@ public class BlogController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
-        Post post = postService.getPostById(id);
+        Post post = postRepository.findById(id);
         model.addAttribute("post", post);
         return "blog-details";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/blog/{id}/edit")
+    public String blogEdit(@PathVariable(value = "id") long id, Model model) {
+        Post post = postRepository.findById(id);
+        model.addAttribute("post", post);
+        return "blog-edit";
+    }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/blog/{id}/edit")
+    public String blogUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons,
+                             @RequestParam String full_text, Model model) {
+        Post post = postRepository.findById(id);
+        post.setTitle(title);
+        post.setAnons(anons);
+        post.setFull_text(full_text);
+        postService.savePost(post);
+        return "redirect:/blog";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/blog/{id}/edit")
+    public String blogDelete(@PathVariable(value = "id") long id, Model model) {
+        Post post = postRepository.findById(id);
+        postRepository.delete(post);
+        return "redirect:/blog";
+    }
 }
