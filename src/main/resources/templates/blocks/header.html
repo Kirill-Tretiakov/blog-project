@@ -1,24 +1,31 @@
 <div th:fragment="header">
-<header class="p-3 bg-dark text-white">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <span class="fs-4">Simple blog</span>
-      </a>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <span class="fs-4">Simple blog</span>
+                </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="margin-left: 35px">
-        <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
-        <li><a href="/blog" class="nav-link px-2 text-white">Блог</a></li>
-        <li><a href="/about" class="nav-link px-2 text-white">Про нас</a></li>
-      </ul>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                    style="margin-left: 35px">
+                    <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
+                    <li><a href="/blog" class="nav-link px-2 text-white">Блог</a></li>
+                    <li><a href="/about" class="nav-link px-2 text-white">Про нас</a></li>
+                </ul>
+                <form th:action="'blog/add'"><a href="blog/add">
+                    <button type="button" class="btn btn-outline-light me-2">Создать статью</button>
+                </a></form>
+                <button type="button" class="btn btn-warning">Log-in</button>
+                <div class="text-end">
 
-      <div class="text-end">
-<!--        <form action="blog/add"><button type="button" class="btn btn-outline-light me-2">Создать статью</button></form>-->
-        <form th:action="'blog/add'"><a href="blog/add"><button type="button" class="btn btn-outline-light me-2">Создать статью</button></a></form>
-        </form>
-      </div>
-    </div>
-  </div>
-</header>
-</nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <body>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    </body>
 </div>

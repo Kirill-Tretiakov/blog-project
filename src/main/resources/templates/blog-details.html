@@ -14,7 +14,7 @@
         <p th:text="${el.full_text}"/>
         <p><b>Просмотры: </b><span th:text="${el.views}"/></p>
         <a th:href="'/blog/' + ${el.id} +'/edit'" class="btn btn-warning">Редактировать</a>
-        <form th:action="'blog/' +${el.id} +'/remove'" method="post" class="mt-2 mb-2">
+        <form th:action="'/blog/'+ ${el.id} +'/remove'" method="post" class="mt-2 mb-2">
             <button class="btn btn-warning">Удалить</button>
         </form>
     </div>

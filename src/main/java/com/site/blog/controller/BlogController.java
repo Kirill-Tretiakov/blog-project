@@ -70,10 +70,9 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/blog/{id}/edit")
+    @RequestMapping(method = RequestMethod.POST, value = "/blog/{id}/remove")
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
-        Post post = postRepository.findById(id);
-        postRepository.delete(post);
+       postService.deletePost(id);
         return "redirect:/blog";
     }
 }
