@@ -72,7 +72,7 @@ public class BlogController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/blog/{id}/remove")
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
-       postService.deletePost(id);
+        postService.deletePost(id);
         return "redirect:/blog";
     }
 }

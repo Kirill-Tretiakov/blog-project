@@ -45,24 +45,19 @@ body {
 <div th:if="${param.logout}">
     Вы вышли из аккаунта.
 </div>
-<form th:action="@{/login}" method="post" class="form-signin">
+
+<form th:action="@{/registration}" method="post" class="form-signin">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
          height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Пожалуйста войдите</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
     <label for="inputUserName" class="sr-only"></label>
     <input type="text" id="inputUserName" class="form-control" placeholder="Логин" required="yes" autofocus=""
            name="username">
     <label for="inputPassword" class="sr-only"></label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="yes" name="password">
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Запомнить меня
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-    <div class="text-center mt-3">
-        <p>Нету аккаунта? <a href="/registration">Зарегестрироваться</a></p>
-    </div>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="yes"
+           name="Пароль">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегестрироваться</button>
+    <p class="mt-5 mb-3 text-muted">© 2017-2022</p>
 </form>
 
 
