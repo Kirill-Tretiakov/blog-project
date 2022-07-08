@@ -1,9 +1,11 @@
 package com.site.blog.controller;
 
 import com.site.blog.model.Post;
+import com.site.blog.model.User;
 import com.site.blog.repository.PostRepository;
 import com.site.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +41,9 @@ public class BlogController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/blog/add")
-    public String addPosts(@RequestParam String title, @RequestParam String anons,
+    public String addPosts(@AuthenticationPrincipal User user, @RequestParam String title, @RequestParam String anons,
                            @RequestParam String full_text, Model model) {
-        postService.savePost(new Post(title, anons, full_text));
+        postService.savePost(new Post(title, anons, full_text,user));
         return "redirect:/blog";
     }
 

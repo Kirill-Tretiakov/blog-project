@@ -10,13 +10,19 @@
 <div th:insert="blocks/header.html"></div>
 <div class="container mt-5 mb-5">
     <div th:each="el : ${post}" class="alert alert-info mt-5">
-        <h3 th:text="${el.title}"/>
+        <h1 th:text="${el.title}"/>
         <p th:text="${el.full_text}"/>
-        <p><b>Просмотры: </b><span th:text="${el.views}"/></p>
-        <a th:href="'/blog/' + ${el.id} +'/edit'" class="btn btn-warning">Редактировать</a>
-        <form th:action="'/blog/'+ ${el.id} +'/remove'" method="post" class="mt-2 mb-2">
-            <button class="btn btn-warning">Удалить</button>
-        </form>
+        <div>
+            <p style="display: inline-block"><b>Автор: </b><span th:text="${el.AuthorName}"/></p>
+            <p style="display: inline-block; margin-left: 10px"><b>Просмотры: </b><span th:text="${el.views}"/></p>
+        </div>
+        <div>
+            <a th:href="'/blog/' + ${el.id} +'/edit'" class="btn btn-warning" style="display: inline-block">Редактировать</a>
+            <form th:action="'/blog/'+ ${el.id} +'/remove'" method="post" class="mt-2 mb-2"
+                  style="display: inline-block; margin-left: 10px">
+                <button class="btn btn-warning">Удалить</button>
+            </form>
+        </div>
     </div>
 </div>
 <div th:insert="blocks/footer.html"></div>
