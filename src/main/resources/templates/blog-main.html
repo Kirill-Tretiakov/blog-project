@@ -10,6 +10,33 @@
 <div th:insert="blocks/header.html"></div>
 <div class="container mt-5 mb-2">
     <h1>Блог сайта</h1>
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: end">
+    <form method="get" action="/blog">
+        <div class="form-outline">
+            <p>Воспользуйтесь быстрым поиском статьи</p>
+            <div style="display: flex; flex-direction: row">
+            <input th:value="${filter}" type="text" id="form1" style="max-width: 700px" name="filter"
+                   class="form-control"/>
+        <button type="submit" class="btn btn-primary" style="margin-left: 8px;">
+            Поиск
+        </button>
+            </div>
+        </div>
+    </form>
+    <div class="form-outline" style="display: flex; justify-content: space-between; width: 65%">
+        <a href="/blog">
+            <button th:action="'/blog'" class="btn btn-primary">
+                Все статьи
+            </button>
+        </a>
+        <a href="/blog/add">
+            <button th:action="'/blog/add'" class="btn btn-primary" style="">
+                Создать статью
+            </button>
+        </a>
+    </div>
+    </div>
+
     <div th:each="post : ${posts}" class="alert alert-info mt-5">
         <h3 th:text="${post.title}"/>
         <p th:text="${post.anons}"/>

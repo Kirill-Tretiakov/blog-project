@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.time.LocalDate;
+
 
 @Controller
 public class BlogController {
@@ -28,12 +29,12 @@ public class BlogController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/blog")
-    public String getPosts(Model model) {
-        List<Post> posts = postService.getAllPosts();
-        model.addAttribute("posts", posts);
-        return "blog-main";
-    }
+//    @RequestMapping(method = RequestMethod.GET, value = "/blog")
+//    public String getPosts(Model model) {
+//        List<Post> posts = postService.getAllPosts();
+//        model.addAttribute("posts", posts);
+//        return "blog-main";
+//    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/blog/add")
     public String blogAdd(Model model) {
@@ -43,7 +44,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.POST, value = "/blog/add")
     public String addPosts(@AuthenticationPrincipal User user, @RequestParam String title, @RequestParam String anons,
                            @RequestParam String full_text, Model model) {
-        postService.savePost(new Post(title, anons, full_text,user));
+        postService.savePost(new Post(title, anons, full_text, user));
         return "redirect:/blog";
     }
 
@@ -76,5 +77,18 @@ public class BlogController {
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
         postService.deletePost(id);
         return "redirect:/blog";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/blog")
+    public String getPostsViaFilter(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+        Iterable<Post> posts = postRepository.findAll();
+        if (filter != null && !filter.isEmpty()) {
+            posts = postRepository.findPostByTitle(filter);
+        } else {
+            posts = postRepository.findAll();
+        }
+        model.addAttribute("posts", posts);
+        model.addAttribute("filter", filter);
+        return "blog-main";
     }
 }

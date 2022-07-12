@@ -3,6 +3,8 @@ package com.site.blog.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @Entity
@@ -70,4 +72,5 @@ public class Post {
     public void setViews(int views) {
         this.views = views;
     }
+
 }
