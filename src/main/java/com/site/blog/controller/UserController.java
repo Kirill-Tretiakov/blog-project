@@ -3,6 +3,7 @@ package com.site.blog.controller;
 import com.site.blog.model.Role;
 import com.site.blog.model.User;
 import com.site.blog.repository.UserRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/user")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     private UserRepository userRepository;
 

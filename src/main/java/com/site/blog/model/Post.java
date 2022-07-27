@@ -17,6 +17,8 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
+    private String fileName;
+
     public Post() {
     }
 
@@ -71,4 +73,19 @@ public class Post {
         this.views = views;
     }
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 }

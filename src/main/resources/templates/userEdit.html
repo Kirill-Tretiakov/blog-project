@@ -23,10 +23,10 @@
             </div>
             <div style="display: flex; flex-direction: column;margin-left: 30px;">
                 <label>Права</label>
-                <div style="display: flex; flex-direction: row; align-items: center; height: 50px; align-items: center;">
+                <div style="display: flex; flex-direction: row; align-items: center; height: 50px;">
                     <div th:each="role:${roles}">
                         <input  th:name="${role}" th:text="${role}"
-                               th:checked="${role}" type="checkbox"
+                               th:checked="${user.roles.contains(role)}" type="checkbox"
                                class="mt-2"/>
                     </div>
                 </div>
