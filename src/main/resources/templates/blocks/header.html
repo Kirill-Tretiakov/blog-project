@@ -1,5 +1,5 @@
 <div th:fragment="header">
-    <header class="p-3 bg-dark text-white">
+    <header class="p-3  bg-primary">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -11,23 +11,20 @@
                     <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
                     <li><a href="/blog" class="nav-link px-2 text-white">Блог</a></li>
                     <li><a href="/about" class="nav-link px-2 text-white">Про нас</a></li>
+                    <li><a href="/user" class="nav-link px-2 text-white">Пользователи</a></li>
                 </ul>
-                <form th:action="'blog/add'"><a href="blog/add">
-                    <button type="button" class="btn btn-outline-light me-2">Создать статью</button>
-                </a></form>
-                <a href="/login">
-                    <button th:action="'/login'" type="button" class="btn btn-warning">Log-in</button>
+               <a href="/login">
+                    <button type="button" class="btn btn-outline-light me-2">Войти</button>
                 </a>
                 <div class="text-end">
-
+                </div>
                 </div>
             </div>
-        </div>
     </header>
-    <body>
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
-    </body>
+<!--    <body>-->
+<!--    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="submit" value="Sign Out"/>-->
+<!--    </form>-->
+<!--    </body>-->
 </div>
